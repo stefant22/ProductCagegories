@@ -1,0 +1,41 @@
+
+
+<h1 class="text-center">Products:</h1>
+  <div id="accordion">
+    <div class="card" *ngFor ='let product of products'>
+    <div class="card-header" id="heading{{product.id}}">
+        <h5 class="mb-0">
+          <button class="btn" data-toggle="collapse" attr.data-target="#collapse{{product.id}}" aria-expanded="false" attr.aria-controls="collapse{{product.id}}">
+           Product Name: {{product.name}}
+          </button>
+
+          <button (click)="deleteProduct(product)" value="{{product.id}}" name="productId" type="button" class="btn btn-danger float-right">Delete</button>
+        </h5> 
+      </div>
+  
+      <div attr.id="collapse{{product.id}}" class="collapse" attr.aria-labelledby="heading{{product.id}}" >
+        <div class="card-body">
+            <br>
+            Created date: {{product.createdAt|date}}
+             <br>
+           Price : {{product.price}} 
+          
+            
+<br>
+
+           Rate Plans:
+            <ul *ngFor="let ok of product.rate_plans"> 
+                
+             <li>  <a routerLink="product_package/{{product.id}}/rate_plan/{{ok.id}}">{{ok.name}}</a> </li>
+                
+            </ul>
+       </div>
+      </div>
+    </div>
+
+</div>
+
+<button routerLink="product_package/add" type="button" class="btn btn-primary">Add Product</button>
+
+
+
